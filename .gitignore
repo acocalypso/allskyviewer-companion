@@ -47,3 +47,9 @@ google-services.json
 
 # Windows
 Thumbs.db
+
+# Keep gradle wrapper files
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+!gradlew
+!gradlew.bat
