@@ -48,10 +48,17 @@ class WeatherViewModel(
                     }
                 }
                 .onFailure { error ->
+                    val errorMessage = when {
+                        error.message?.contains("permission", ignoreCase = true) == true -> 
+                            "Location permission required"
+                        error.message?.contains("location", ignoreCase = true) == true ->
+                            "Location services not available"
+                        else -> error.message ?: "Unknown error occurred"
+                    }
                     _uiState.update { 
                         it.copy(
                             isLoading = false,
-                            error = error.message ?: "Unknown error occurred"
+                            error = errorMessage
                         )
                     }
                 }

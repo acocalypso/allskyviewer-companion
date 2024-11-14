@@ -32,4 +32,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - HTML parsing for media galleries
 - Lifecycle-aware components
 - DataStore for preferences
-- GPS location services 
+- GPS location services

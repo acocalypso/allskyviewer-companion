@@ -14,18 +14,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import de.astronarren.allsky.data.UserPreferences
+import de.astronarren.allsky.data.network.WeatherApiProvider
 import de.astronarren.allsky.ui.MainScreen
 import de.astronarren.allsky.ui.about.AboutScreen
 import de.astronarren.allsky.ui.setup.SetupScreen
 import de.astronarren.allsky.ui.theme.AllskyTheme
 import de.astronarren.allsky.utils.LocationManager
-import de.astronarren.allsky.viewmodel.WeatherViewModel
+import de.astronarren.allsky.viewmodel.*
 import de.astronarren.allsky.data.WeatherRepository
 import de.astronarren.allsky.data.AllskyRepository
-import de.astronarren.allsky.viewmodel.AllskyViewModel
-import de.astronarren.allsky.viewmodel.ImageViewerViewModel
-import de.astronarren.allsky.viewmodel.SetupViewModel
-import de.astronarren.allsky.viewmodel.LiveImageViewModel
 
 class MainActivity : ComponentActivity() {
     private val locationPermissionRequest = registerForActivityResult(
@@ -34,11 +31,8 @@ class MainActivity : ComponentActivity() {
         when {
             permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) ||
             permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
-                // Permission granted, trigger weather update
+                // Only trigger weather update when permission is granted
                 weatherViewModel.updateWeather()
-            }
-            else -> {
-                // Handle permission denied
             }
         }
     }
@@ -54,10 +48,22 @@ class MainActivity : ComponentActivity() {
         
         val userPreferences = UserPreferences(applicationContext)
         val locationManager = LocationManager(applicationContext)
-        val weatherRepository = WeatherRepository(userPreferences, locationManager)
+        
+        // Get WeatherService from provider
+        val weatherService = WeatherApiProvider.provideWeatherService()
+        
+        val weatherRepository = WeatherRepository(
+            locationManager = locationManager,
+            weatherService = weatherService,
+            userPreferences = userPreferences
+        )
+        
         val allskyRepository = AllskyRepository(userPreferences)
         
-        weatherViewModel = WeatherViewModel(weatherRepository, userPreferences)
+        weatherViewModel = WeatherViewModel(
+            weatherRepository = weatherRepository,
+            userPreferences = userPreferences
+        )
         allskyViewModel = AllskyViewModel(allskyRepository, userPreferences)
         imageViewerViewModel = ImageViewerViewModel()
         setupViewModel = SetupViewModel(userPreferences)
@@ -98,7 +104,15 @@ class MainActivity : ComponentActivity() {
                                 allskyViewModel = allskyViewModel,
                                 imageViewerViewModel = imageViewerViewModel,
                                 liveImageViewModel = liveImageViewModel,
-                                onNavigateToAbout = { showAbout = true }
+                                onNavigateToAbout = { showAbout = true },
+                                onRequestLocationPermission = {
+                                    locationPermissionRequest.launch(
+                                        arrayOf(
+                                            Manifest.permission.ACCESS_FINE_LOCATION,
+                                            Manifest.permission.ACCESS_COARSE_LOCATION
+                                        )
+                                    )
+                                }
                             )
                         }
                     }

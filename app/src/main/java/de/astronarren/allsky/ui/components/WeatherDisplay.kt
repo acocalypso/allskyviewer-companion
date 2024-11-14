@@ -8,6 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import de.astronarren.allsky.data.WeatherData
 import de.astronarren.allsky.data.City
@@ -18,7 +19,8 @@ import de.astronarren.allsky.ui.state.WeatherUiState
 @Composable
 fun WeatherDisplay(
     modifier: Modifier = Modifier,
-    uiState: WeatherUiState
+    uiState: WeatherUiState,
+    onRequestPermission: () -> Unit = {}
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
@@ -35,6 +37,36 @@ fun WeatherDisplay(
                         text = "Loading weather data...",
                         modifier = Modifier.padding(top = 8.dp)
                     )
+                }
+                uiState.error?.contains("permission", ignoreCase = true) == true -> {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text(
+                            text = "Location Permission Required",
+                            style = MaterialTheme.typography.titleLarge,
+                            textAlign = TextAlign.Center
+                        )
+                        
+                        Spacer(modifier = Modifier.height(8.dp))
+                        
+                        Text(
+                            text = "Weather forecasts require location permission to provide accurate data for your area.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            textAlign = TextAlign.Center,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        
+                        Spacer(modifier = Modifier.height(16.dp))
+                        
+                        Button(
+                            onClick = onRequestPermission,
+                            modifier = Modifier.fillMaxWidth(0.8f)
+                        ) {
+                            Text("Grant Location Permission")
+                        }
+                    }
                 }
                 uiState.error != null -> {
                     Text(

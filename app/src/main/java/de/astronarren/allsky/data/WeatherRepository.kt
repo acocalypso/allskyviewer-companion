@@ -5,17 +5,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class WeatherRepository(
-    private val userPreferences: UserPreferences,
-    private val locationManager: LocationManager
+    private val locationManager: LocationManager,
+    private val weatherService: WeatherService,
+    private val userPreferences: UserPreferences
 ) {
-    private val weatherService = Retrofit.Builder()
-        .baseUrl("https://api.openweathermap.org/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(WeatherService::class.java)
-
     suspend fun getForecast(): Result<WeatherResponse> {
         return try {
+            if (!locationManager.isLocationPermissionGranted()) {
+                return Result.failure(Exception("Location permission required"))
+            }
+            
             val location = locationManager.getCurrentLocation() ?: 
                 return Result.failure(Exception("Location not available"))
             

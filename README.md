@@ -51,4 +51,4 @@ To use weather features:
 - Android SDK with API 34
 
 ### Steps
-1. Clone the repository: 
+1. Clone the repository:

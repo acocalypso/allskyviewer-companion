@@ -32,7 +32,8 @@ fun MainScreen(
     allskyViewModel: AllskyViewModel,
     imageViewerViewModel: ImageViewerViewModel,
     liveImageViewModel: LiveImageViewModel,
-    onNavigateToAbout: () -> Unit
+    onNavigateToAbout: () -> Unit,
+    onRequestLocationPermission: () -> Unit
 ) {
     var isSettingsOpen by remember { mutableStateOf(false) }
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -40,7 +41,6 @@ fun MainScreen(
     var apiKey by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     
-    // Collect UI states following lifecycle-aware pattern
     val weatherUiState by weatherViewModel.uiState.collectAsStateWithLifecycle()
     val allskyUiState by allskyViewModel.uiState.collectAsStateWithLifecycle()
     val imageViewerState by imageViewerViewModel.uiState.collectAsStateWithLifecycle()
@@ -53,14 +53,12 @@ fun MainScreen(
         allskyUrl = userPreferences.getAllskyUrl()
     }
 
-    // Update weather when API key changes
     LaunchedEffect(apiKey) {
         if (apiKey.isNotEmpty()) {
             weatherViewModel.updateWeather()
         }
     }
 
-    // Collect URL changes in a lifecycle-aware manner
     LaunchedEffect(Unit) {
         userPreferences.getAllskyUrlFlow()
             .collect { url ->
@@ -79,13 +77,7 @@ fun MainScreen(
                         isSettingsOpen = false
                     }
                 },
-                onAboutClick = {
-                    scope.launch {
-                        drawerState.close()
-                        isSettingsOpen = false
-                        onNavigateToAbout()
-                    }
-                },
+                onAboutClick = onNavigateToAbout,
                 userPreferences = userPreferences
             )
         }
@@ -111,20 +103,18 @@ fun MainScreen(
                     }
                 )
             }
-        ) { innerPadding ->
+        ) { padding ->
             Box(modifier = Modifier.fillMaxSize()) {
-                // Main scrollable content
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(innerPadding)
+                        .padding(padding)
                         .verticalScroll(scrollState)
                         .padding(horizontal = 16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // AllSky Image
                     if (allskyUrl.isNotEmpty()) {
                         Card(
                             modifier = Modifier
@@ -140,7 +130,6 @@ fun MainScreen(
                                     contentScale = ContentScale.Crop
                                 )
                                 
-                                // Optional: Show last update time
                                 Text(
                                     text = "Last update: ${formatTime(liveImageState.lastUpdate)}",
                                     style = MaterialTheme.typography.bodySmall,
@@ -178,12 +167,10 @@ fun MainScreen(
                     
                     Spacer(modifier = Modifier.height(16.dp))
                     
-                    // Moon Phase Display
                     MoonPhaseDisplay()
                     
                     Spacer(modifier = Modifier.height(16.dp))
                     
-                    // Weather Display
                     if (apiKey.isEmpty()) {
                         Card(
                             modifier = Modifier.fillMaxWidth(),
@@ -217,12 +204,14 @@ fun MainScreen(
                             }
                         }
                     } else {
-                        WeatherDisplay(uiState = weatherUiState)
+                        WeatherDisplay(
+                            uiState = weatherUiState,
+                            onRequestPermission = onRequestLocationPermission
+                        )
                     }
                     
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Media sections
                     if (allskyUiState.isLoading) {
                         CircularProgressIndicator()
                     } else if (allskyUiState.error != null) {
@@ -257,7 +246,6 @@ fun MainScreen(
                     }
                 }
 
-                // Full-screen image viewer overlay
                 if (imageViewerState.isFullScreen && imageViewerState.currentImageUrl != null) {
                     println("Debug: Showing full screen image: ${imageViewerState.currentImageUrl}")
                     FullScreenImageViewer(

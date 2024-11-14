@@ -12,13 +12,16 @@ import kotlin.coroutines.resume
 class LocationManager(private val context: Context) {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 
+    fun isLocationPermissionGranted(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            context,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
     suspend fun getCurrentLocation(): Location? = suspendCancellableCoroutine { continuation ->
         try {
-            if (ActivityCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
+            if (isLocationPermissionGranted()) {
                 println("Debug: Location permission granted, requesting location")
                 fusedLocationClient.lastLocation
                     .addOnSuccessListener { location ->

@@ -84,11 +84,11 @@ fun MoonPhaseDisplay() {
             
             // Progress Indicator
             LinearProgressIndicator(
-                progress = (illumination / 100).toFloat(),
                 modifier = Modifier
                     .padding(top = 8.dp)
                     .fillMaxWidth()
                     .height(4.dp),
+                progress = { (illumination / 100).toFloat() },
                 color = MaterialTheme.colorScheme.primary,
                 trackColor = MaterialTheme.colorScheme.surfaceVariant
             )
