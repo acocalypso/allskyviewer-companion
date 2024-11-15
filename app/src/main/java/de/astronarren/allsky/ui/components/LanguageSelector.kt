@@ -25,7 +25,7 @@ fun LanguageSelector(
     
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        windowInsets = WindowInsets(0)
+        modifier = Modifier.fillMaxWidth()
     ) {
         Column(
             modifier = Modifier

@@ -21,7 +21,7 @@
     <string name="get_api_key">Get API Key</string>
     <string name="loading_weather">Loading weather data...</string>
     <string name="location_permission_required">Location Permission Required</string>
-    <string name="location_permission_rationale">Weather forecasts require location permission to provide accurate data for your area.</string>
+    <string name="location_permission_rationale" translatable="false">Weather forecasts require location permission to provide accurate data for your area.</string>
     <string name="five_day_forecast">5-Day Weather Forecast</string>
     <string name="next_days">Next Days</string>
     <string name="feels_like">Feels like</string>
@@ -58,21 +58,21 @@
     <string name="next_new_moon_in">Next new moon in %d days</string>
     
     <!-- Media Sections -->
-    <string name="timelapses">Timelapses</string>
-    <string name="keograms">Keograms</string>
-    <string name="startrails">Startrails</string>
-    <string name="no_content_available">No content available</string>
-    <string name="media_from_date">Media from %s</string>
+    <string name="timelapses" translatable="false">Timelapses</string>
+    <string name="keograms" translatable="false">Keograms</string>
+    <string name="startrails" translatable="false">Startrails</string>
+    <string name="no_content_available" translatable="false">No content available</string>
+    <string name="media_from_date" translatable="false">Media from %s</string>
     
     <!-- About Screen -->
     <string name="about_title">Allsky Companion App</string>
     <string name="about_copyright">© 2024 astro-narren.de / AcoVanConis</string>
     <string name="about_description">Monitor your Allsky camera, view weather data, and access historical captures.</string>
     <string name="about_features">Features</string>
-    <string name="about_features_list">• Live Image View with 30-second refresh\n• Moon Phase Display with illumination percentage\n• Local weather forecast using OpenWeather API\n• Media Galleries:\n  - Keograms with full-screen viewer\n  - Startrails with full-screen viewer\n  - Timelapse videos\n• Dynamic Theme\n• Location Services</string>
-    <string name="about_version">Version %s</string>
+    <string name="about_features_list" translatable="false">• Live Image View with 30-second refresh\n• Moon Phase Display with illumination percentage\n• Local weather forecast using OpenWeather API\n• Media Galleries:\n  - Keograms with full-screen viewer\n  - Startrails with full-screen viewer\n  - Timelapse videos\n• Dynamic Theme\n• Location Services</string>
+    <string name="about_version" translatable="false">Version %s</string>
     <string name="about_components">Components &amp; Libraries</string>
-    <string name="about_components_list">• Jetpack Compose for modern UI\n• Material Design 3\n• Kotlin Coroutines &amp; Flow\n• Retrofit for API calls\n• Coil for image loading\n• DataStore for preferences\n• Google Play Services Location\n• AndroidX Navigation\n• AndroidX Lifecycle\n• Hilt for dependency injection</string>
+    <string name="about_components_list" translatable="false">• Jetpack Compose for modern UI\n• Material Design 3\n• Kotlin Coroutines &amp; Flow\n• Retrofit for API calls\n• Coil for image loading\n• DataStore for preferences\n• Google Play Services Location\n• AndroidX Navigation\n• AndroidX Lifecycle\n• Hilt for dependency injection</string>
     
     <!-- About Screen Features -->
     <string name="feature_live_view_title">Live View</string>
@@ -107,13 +107,13 @@
     <string name="apache_license">Apache License 2.0</string>
     
     <!-- Language Settings -->
-    <string name="language_settings">Language</string>
-    <string name="language_system">System Default</string>
-    <string name="language_english">English</string>
-    <string name="language_german">German</string>
-    <string name="language_spanish">Spanish</string>
-    <string name="language_french">French</string>
-    <string name="language_italian">Italian</string>
+    <string name="language_settings" translatable="false">Language</string>
+    <string name="language_system" translatable="false">System Default</string>
+    <string name="language_english" translatable="false">English</string>
+    <string name="language_german" translatable="false">German</string>
+    <string name="language_spanish" translatable="false">Spanish</string>
+    <string name="language_french" translatable="false">French</string>
+    <string name="language_italian" translatable="false">Italian</string>
     
     <!-- Weather Forecast -->
     <string name="weather_forecast">Weather Forecast</string>
