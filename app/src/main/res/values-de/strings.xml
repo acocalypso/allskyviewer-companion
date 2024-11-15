@@ -118,4 +118,11 @@
     <!-- Weather Display -->
     <string name="weather_forecast">Wettervorhersage</string>
     <string name="weather_api_required">Wetterdaten sind nur mit einem gültigen OpenWeather API-Schlüssel verfügbar</string>
+    
+    <!-- Update Dialog -->
+    <string name="update_available">Update verfügbar</string>
+    <string name="update_dialog_message">Version %1$s ist verfügbar.\n\nNeuerungen:\n%2$s</string>
+    <string name="download_update">Update herunterladen</string>
+    <string name="later">Später</string>
+    <string name="downloading_update">Update wird heruntergeladen...</string>
 </resources> 

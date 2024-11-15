@@ -112,4 +112,11 @@
     <string name="about_copyright">© 2024 astro-narren.de / AcoVanConis</string>
     <string name="weather_forecast">Previsioni meteo</string>
     <string name="weather_api_required">I dati meteo sono disponibili solo con una chiave API OpenWeather valida</string>
+    
+    <!-- Update Dialog -->
+    <string name="update_available">Aggiornamento disponibile</string>
+    <string name="update_dialog_message">La versione %1$s è disponibile.\n\nNovità:\n%2$s</string>
+    <string name="download_update">Scarica aggiornamento</string>
+    <string name="later">Più tardi</string>
+    <string name="downloading_update">Download aggiornamento in corso...</string>
 </resources> 

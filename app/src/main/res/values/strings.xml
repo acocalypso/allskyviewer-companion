@@ -118,4 +118,11 @@
     <!-- Weather Forecast -->
     <string name="weather_forecast">Weather Forecast</string>
     <string name="weather_api_required">Weather data is only available with a valid OpenWeather API key</string>
+    
+    <!-- Update Dialog -->
+    <string name="update_available">Update Available</string>
+    <string name="update_dialog_message">Version %1$s is available.\n\nWhat\'s new:\n%2$s</string>
+    <string name="download_update">Download Update</string>
+    <string name="later">Later</string>
+    <string name="downloading_update">Downloading update...</string>
 </resources>

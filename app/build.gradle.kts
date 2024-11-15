@@ -107,4 +107,7 @@ dependencies {
 
     // AppCompat
     implementation("androidx.appcompat:appcompat:1.7.0")
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
 }

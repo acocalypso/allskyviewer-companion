@@ -26,6 +26,8 @@ import java.util.*
 import androidx.compose.ui.res.stringResource
 import de.astronarren.allsky.R
 import de.astronarren.allsky.utils.LanguageManager
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.platform.LocalContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,6 +53,12 @@ fun MainScreen(
     val liveImageState by liveImageViewModel.uiState.collectAsStateWithLifecycle()
     
     var allskyUrl by remember { mutableStateOf("") }
+    
+    val context = LocalContext.current
+    val updateViewModel: UpdateViewModel = viewModel(
+        factory = UpdateViewModelFactory()
+    )
+    val updateState by updateViewModel.uiState.collectAsState()
     
     LaunchedEffect(Unit) {
         apiKey = userPreferences.getApiKey()
@@ -261,6 +269,27 @@ fun MainScreen(
             }
         }
     }
+
+    when (val state = updateState) {
+        is UpdateUiState.UpdateAvailable -> {
+            UpdateDialog(
+                updateInfo = state.updateInfo,
+                onDismiss = { /* Handle dismiss */ },
+                onDownload = { updateInfo ->
+                    updateViewModel.downloadUpdate(context, updateInfo)
+                }
+            )
+        }
+        UpdateUiState.Checking -> {
+            // Optionally show a loading indicator
+        }
+        UpdateUiState.Downloading -> {
+            // Optionally show download progress
+        }
+        UpdateUiState.NoUpdate -> {
+            // Do nothing when no update is available
+        }
+    }
 }
 
 private fun formatTime(timestamp: Long): String {
@@ -269,4 +298,4 @@ private fun formatTime(timestamp: Long): String {
     } else {
         SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date(timestamp))
     }
-} 
+}
