@@ -134,22 +134,12 @@ fun SettingsPanel(
                 OutlinedTextField(
                     value = urlInput,
                     onValueChange = { urlInput = it },
-                    label = { Text(stringResource(R.string.allsky_url)) },
+                    label = { Text(stringResource(R.string.allsky_url_input)) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .semantics {
+                        .semantics(mergeDescendants = true) { 
                             contentDescription = urlInputDescription
-                        },
-                    singleLine = true,
-                    shape = MaterialTheme.shapes.medium,
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = MaterialTheme.colorScheme.primary,
-                        unfocusedBorderColor = MaterialTheme.colorScheme.outline
-                    ),
-                    isError = !isValidUrl(urlInput),
-                    supportingText = if (!isValidUrl(urlInput)) {
-                        { Text(stringResource(R.string.invalid_url_error)) }
-                    } else null
+                        }
                 )
                 
                 Spacer(modifier = Modifier.height(16.dp))

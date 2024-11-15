@@ -139,7 +139,7 @@ fun MainScreen(
                             Box(modifier = Modifier.fillMaxSize()) {
                                 AsyncImage(
                                     model = liveImageState.imageUrl,
-                                    contentDescription = "Live AllSky Image",
+                                    contentDescription = stringResource(R.string.live_allsky_image),
                                     modifier = Modifier.fillMaxSize(),
                                     contentScale = ContentScale.Crop
                                 )
@@ -227,7 +227,14 @@ fun MainScreen(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     if (allskyUiState.isLoading) {
-                        CircularProgressIndicator()
+                        CircularProgressIndicator(
+                            modifier = Modifier.padding(8.dp)
+                        )
+                        Text(
+                            text = stringResource(R.string.loading_description),
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
                     } else if (allskyUiState.error != null) {
                         Text(
                             text = allskyUiState.error!!,

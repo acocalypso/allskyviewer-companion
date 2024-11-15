@@ -73,7 +73,8 @@ fun WeatherDisplay(
                 uiState.error != null -> {
                     Text(
                         text = uiState.error,
-                        color = MaterialTheme.colorScheme.error
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }
                 uiState.weatherData != null -> {

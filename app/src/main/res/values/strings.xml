@@ -134,4 +134,7 @@
     <string name="app_status">App Status</string>
     <string name="up_to_date">Up to date</string>
     <string name="checking_for_updates">Checking for updates...</string>
+    <string name="live_allsky_image">Live Allsky Image</string>
+    <string name="loading_description">Loading content</string>
+    <string name="allsky_url_input">Allsky URL</string>
 </resources>
