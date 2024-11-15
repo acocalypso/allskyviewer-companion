@@ -3,10 +3,6 @@ name: Android Release
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Version number (e.g., 1.0.0)'
-        required: true
-        type: string
       prerelease:
         description: 'Is this a pre-release?'
         required: true
@@ -23,6 +19,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Extract version from build.gradle
+        id: get_version
+        run: |
+          VERSION=$(grep 'versionName = ' app/build.gradle.kts | sed 's/.*versionName = "\(.*\)".*/\1/')
+          echo "Version found: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
@@ -44,10 +47,6 @@ jobs:
           echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
           echo Last build tool version is: $BUILD_TOOL_VERSION
 
-      - name: Update version name in build.gradle
-        run: |
-          sed -i "s/versionName = \".*\"/versionName = \"${{ inputs.version }}\"/" app/build.gradle.kts
-
       - name: Build Release APK
         run: ./gradlew assembleRelease
 
@@ -65,8 +64,8 @@ jobs:
 
       - name: Rename APK
         run: |
-          mv ${{steps.sign_app.outputs.signedReleaseFile}} allsky-companion-${{ inputs.version }}.apk
-          echo "RELEASE_APK=allsky-companion-${{ inputs.version }}.apk" >> $GITHUB_ENV
+          mv ${{steps.sign_app.outputs.signedReleaseFile}} allsky-companion-${{ steps.get_version.outputs.version }}.apk
+          echo "RELEASE_APK=allsky-companion-${{ steps.get_version.outputs.version }}.apk" >> $GITHUB_ENV
 
       - name: Create Release
         id: create_release
@@ -74,8 +73,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: Release ${{ inputs.version }}
-          tag_name: v${{ inputs.version }}
+          name: Release ${{ steps.get_version.outputs.version }}
+          tag_name: v${{ steps.get_version.outputs.version }}
           files: ${{ env.RELEASE_APK }}
           draft: false
           prerelease: ${{ inputs.prerelease }}
