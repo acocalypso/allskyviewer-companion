@@ -104,4 +104,7 @@ dependencies {
     
     // HTML Parser
     implementation("org.jsoup:jsoup:1.17.2")
+
+    // AppCompat
+    implementation("androidx.appcompat:appcompat:1.6.1")
 }

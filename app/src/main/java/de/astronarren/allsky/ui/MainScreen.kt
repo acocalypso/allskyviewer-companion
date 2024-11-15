@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import androidx.compose.ui.res.stringResource
 import de.astronarren.allsky.R
+import de.astronarren.allsky.utils.LanguageManager
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,6 +35,7 @@ fun MainScreen(
     allskyViewModel: AllskyViewModel,
     imageViewerViewModel: ImageViewerViewModel,
     liveImageViewModel: LiveImageViewModel,
+    languageManager: LanguageManager,
     onNavigateToAbout: () -> Unit,
     onRequestLocationPermission: () -> Unit
 ) {
@@ -80,7 +82,8 @@ fun MainScreen(
                     }
                 },
                 onAboutClick = onNavigateToAbout,
-                userPreferences = userPreferences
+                userPreferences = userPreferences,
+                languageManager = languageManager
             )
         }
     ) {
@@ -183,14 +186,14 @@ fun MainScreen(
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 Text(
-                                    text = "Weather Forecast",
+                                    text = stringResource(R.string.weather_forecast),
                                     style = MaterialTheme.typography.titleLarge
                                 )
                                 
                                 Spacer(modifier = Modifier.height(8.dp))
                                 
                                 Text(
-                                    text = "Weather data is only available with a valid OpenWeather API key",
+                                    text = stringResource(R.string.weather_api_required),
                                     style = MaterialTheme.typography.bodyMedium,
                                     textAlign = TextAlign.Center
                                 )
@@ -201,7 +204,7 @@ fun MainScreen(
                                         uriHandler.openUri("https://home.openweathermap.org/api_keys")
                                     }
                                 ) {
-                                    Text("Get API Key")
+                                    Text(stringResource(R.string.get_api_key))
                                 }
                             }
                         }

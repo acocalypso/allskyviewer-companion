@@ -62,4 +62,28 @@
     <string name="component_lifecycle">AndroidX Lifecycle</string>
     <string name="licenses_title">Licencias de Código Abierto</string>
     <string name="apache_license">Licencia Apache 2.0</string>
+    
+    <!-- Add missing strings -->
+    <string name="version_number">Versión %s</string>
+    <string name="open_about_description">Abrir Acerca de</string>
+    <string name="location_format">%1$s, %2$s</string>
+    <string name="temperature_celsius">%.1f°C</string>
+    <string name="cloud_coverage">%d%%</string>
+    <string name="get_api_key">Obtener clave API</string>
+    <string name="next_days">Próximos días</string>
+    <string name="start_setup">Iniciar configuración</string>
+    <string name="next">Siguiente</string>
+    <string name="complete_setup">Completar configuración</string>
+    <string name="enter_allsky_url">Ingrese la URL de su instalación Allsky</string>
+    <string name="api_key_description">Opcional: Agregue su clave API de OpenWeather para ver pronósticos</string>
+    <string name="location_permission_note">Nota: Los pronósticos requieren permiso GPS para detectar su ubicación actual.</string>
+    <string name="permission_later">Puede otorgar este permiso más tarde.</string>
+    <string name="welcome_title">Bienvenido a Allsky</string>
+    <string name="welcome_subtitle">Monitoree su cielo con esta aplicación complementaria de Allsky</string>
+    <string name="learn_more">Más información sobre Allsky</string>
+    <string name="allsky_url_title">URL de Allsky</string>
+    <string name="openweather_title">Clave API de OpenWeather</string>
+    <string name="about_copyright">© 2024 astro-narren.de / AcoVanConis</string>
+    <string name="weather_forecast">Pronóstico del tiempo</string>
+    <string name="weather_api_required">Los datos meteorológicos solo están disponibles con una clave API válida de OpenWeather</string>
 </resources> 

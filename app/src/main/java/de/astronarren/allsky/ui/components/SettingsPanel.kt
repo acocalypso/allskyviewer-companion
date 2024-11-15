@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -12,6 +13,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import de.astronarren.allsky.data.UserPreferences
 import de.astronarren.allsky.R
+import de.astronarren.allsky.utils.AppLanguage
+import de.astronarren.allsky.utils.LanguageManager
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -20,11 +23,14 @@ fun SettingsPanel(
     isOpen: Boolean,
     onDismiss: () -> Unit,
     onAboutClick: () -> Unit,
-    userPreferences: UserPreferences
+    userPreferences: UserPreferences,
+    languageManager: LanguageManager
 ) {
     var apiKeyInput by remember { mutableStateOf("") }
     var urlInput by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
+    var showLanguageDialog by remember { mutableStateOf(false) }
+    var currentLanguage by remember { mutableStateOf(languageManager.getCurrentLanguage()) }
     
     LaunchedEffect(isOpen) {
         if (isOpen) {
@@ -63,6 +69,28 @@ fun SettingsPanel(
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true
                 )
+                
+                Spacer(modifier = Modifier.height(16.dp))
+                
+                // Language Selection
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { showLanguageDialog = true }
+                        .padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(R.string.language_settings),
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                        text = stringResource(currentLanguage.nameResId),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
                 
                 Button(
                     onClick = {
@@ -109,6 +137,17 @@ fun SettingsPanel(
                     )
                 }
             }
+        }
+
+        if (showLanguageDialog) {
+            LanguageSelector(
+                currentLanguage = currentLanguage,
+                onLanguageSelected = { language ->
+                    currentLanguage = language
+                    languageManager.setLanguage(language)
+                },
+                onDismiss = { showLanguageDialog = false }
+            )
         }
     }
 } 

@@ -30,4 +30,86 @@
     <string name="about_description">Surveillez votre caméra Allsky, consultez les données météo et accédez aux captures historiques.</string>
     <string name="about_features">Fonctionnalités</string>
     <string name="about_components">Composants et Bibliothèques</string>
+    
+    <!-- Media Sections -->
+    <string name="timelapses">Timelapses</string>
+    <string name="keograms">Kéogrammes</string>
+    <string name="startrails">Filés d\'étoiles</string>
+    <string name="no_content_available">Aucun contenu disponible</string>
+    <string name="media_from_date">Médias du %s</string>
+    
+    <!-- Moon Phases -->
+    <string name="moon_phase_new_moon">Nouvelle Lune</string>
+    <string name="moon_phase_waxing_crescent">Premier Croissant</string>
+    <string name="moon_phase_first_quarter">Premier Quartier</string>
+    <string name="moon_phase_waxing_gibbous">Lune Gibbeuse Croissante</string>
+    <string name="moon_phase_full_moon">Pleine Lune</string>
+    <string name="moon_phase_waning_gibbous">Lune Gibbeuse Décroissante</string>
+    <string name="moon_phase_last_quarter">Dernier Quartier</string>
+    <string name="moon_phase_waning_crescent">Dernier Croissant</string>
+    
+    <!-- About Screen Features -->
+    <string name="feature_live_view_title">Vue en Direct</string>
+    <string name="feature_live_view_desc">Vue en direct avec actualisation toutes les 30 secondes</string>
+    <string name="feature_moon_phase_title">Phase Lunaire</string>
+    <string name="feature_moon_phase_desc">Affichage de la phase lunaire avec pourcentage d\'illumination</string>
+    <string name="feature_weather_title">Météo</string>
+    <string name="feature_weather_desc">Prévisions météo locales via l\'API OpenWeather</string>
+    <string name="feature_media_title">Galerie Média</string>
+    <string name="feature_media_desc">Kéogrammes, filés d\'étoiles et vidéos timelapses avec visualisation plein écran</string>
+    <string name="feature_theme_title">Thème Dynamique</string>
+    <string name="feature_theme_desc">Supporte le thème système et les couleurs Material You</string>
+    
+    <!-- About Screen Components -->
+    <string name="component_section_ui">Framework UI</string>
+    <string name="component_section_core">Bibliothèques Core</string>
+    <string name="component_section_android">Composants Android</string>
+    
+    <!-- Component Links -->
+    <string name="component_jetpack_compose">Jetpack Compose</string>
+    <string name="component_material_design">Material Design 3</string>
+    <string name="component_coroutines">Kotlin Coroutines &amp; Flow</string>
+    <string name="component_retrofit">Retrofit</string>
+    <string name="component_coil">Coil</string>
+    <string name="component_datastore">DataStore</string>
+    <string name="component_play_services">Google Play Services Location</string>
+    <string name="component_navigation">AndroidX Navigation</string>
+    <string name="component_lifecycle">AndroidX Lifecycle</string>
+    
+    <!-- Licenses -->
+    <string name="licenses_title">Licences Open Source</string>
+    <string name="apache_license">Licence Apache 2.0</string>
+    
+    <!-- Language Settings -->
+    <string name="language_settings">Langue</string>
+    <string name="language_system">Système</string>
+    <string name="language_english">Anglais</string>
+    <string name="language_german">Allemand</string>
+    <string name="language_spanish">Espagnol</string>
+    <string name="language_french">Français</string>
+    <string name="language_italian">Italien</string>
+    
+    <!-- Add missing strings -->
+    <string name="version_number">Version %s</string>
+    <string name="open_about_description">Ouvrir À propos</string>
+    <string name="location_format">%1$s, %2$s</string>
+    <string name="temperature_celsius">%.1f°C</string>
+    <string name="cloud_coverage">%d%%</string>
+    <string name="get_api_key">Obtenir une clé API</string>
+    <string name="next_days">Prochains jours</string>
+    <string name="start_setup">Démarrer la configuration</string>
+    <string name="next">Suivant</string>
+    <string name="complete_setup">Terminer la configuration</string>
+    <string name="enter_allsky_url">Entrez l\'URL de votre installation Allsky</string>
+    <string name="api_key_description">Optionnel : Ajoutez votre clé API OpenWeather pour voir les prévisions</string>
+    <string name="location_permission_note">Note : Les prévisions nécessitent la permission GPS pour détecter votre position actuelle.</string>
+    <string name="permission_later">Vous pouvez accorder cette permission plus tard.</string>
+    <string name="welcome_title">Bienvenue sur Allsky</string>
+    <string name="welcome_subtitle">Surveillez votre ciel avec cette application compagnon Allsky</string>
+    <string name="learn_more">En savoir plus sur Allsky</string>
+    <string name="allsky_url_title">URL Allsky</string>
+    <string name="openweather_title">Clé API OpenWeather</string>
+    <string name="about_copyright">© 2024 astro-narren.de / AcoVanConis</string>
+    <string name="weather_forecast">Prévisions météo</string>
+    <string name="weather_api_required">Les données météo ne sont disponibles qu\'avec une clé API OpenWeather valide</string>
 </resources> 

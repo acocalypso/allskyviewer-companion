@@ -3,43 +3,34 @@ package de.astronarren.allsky.data
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
-import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+import kotlinx.coroutines.runBlocking
 
 class UserPreferences(private val context: Context) {
     companion object {
-        private val SETUP_COMPLETE = booleanPreferencesKey("setup_complete")
-        private val API_KEY = stringPreferencesKey("api_key")
         private val ALLSKY_URL = stringPreferencesKey("allsky_url")
-        private val LAST_WEATHER_DATA = stringPreferencesKey("last_weather_data")
-        private val LAST_WEATHER_TIME = stringPreferencesKey("last_weather_time")
-    }
-
-    suspend fun isSetupComplete(): Boolean {
-        return context.dataStore.data.map { preferences ->
-            preferences[SETUP_COMPLETE] ?: false
-        }.first()
-    }
-
-    suspend fun markSetupComplete() {
-        context.dataStore.edit { preferences ->
-            preferences[SETUP_COMPLETE] = true
-        }
-    }
-
-    suspend fun getAllskyUrl(): String {
-        return context.dataStore.data.map { preferences ->
-            preferences[ALLSKY_URL] ?: ""
-        }.first()
+        private val API_KEY = stringPreferencesKey("api_key")
+        private val SETUP_COMPLETE = booleanPreferencesKey("setup_complete")
+        private val LANGUAGE_KEY = stringPreferencesKey("selected_language")
     }
 
     suspend fun saveAllskyUrl(url: String) {
         context.dataStore.edit { preferences ->
             preferences[ALLSKY_URL] = url
+        }
+    }
+
+    fun getAllskyUrl(): String {
+        return runBlocking {
+            context.dataStore.data.first()[ALLSKY_URL] ?: ""
+        }
+    }
+
+    fun getAllskyUrlFlow(): Flow<String> {
+        return context.dataStore.data.map { preferences ->
+            preferences[ALLSKY_URL] ?: ""
         }
     }
 
@@ -49,37 +40,39 @@ class UserPreferences(private val context: Context) {
         }
     }
 
-    suspend fun getApiKey(): String {
-        return context.dataStore.data.map { preferences ->
-            preferences[API_KEY] ?: ""
-        }.first()
-    }
-
-    suspend fun saveWeatherData(data: String) {
-        context.dataStore.edit { preferences ->
-            preferences[LAST_WEATHER_DATA] = data
-            preferences[LAST_WEATHER_TIME] = System.currentTimeMillis().toString()
-        }
-    }
-
-    suspend fun getLastWeatherData(): Pair<String?, Long> {
-        return context.dataStore.data.map { preferences ->
-            Pair(
-                preferences[LAST_WEATHER_DATA],
-                preferences[LAST_WEATHER_TIME]?.toLongOrNull() ?: 0L
-            )
-        }.first()
-    }
-
-    fun getAllskyUrlFlow(): Flow<String> {
-        return context.dataStore.data.map { preferences ->
-            preferences[ALLSKY_URL] ?: ""
+    fun getApiKey(): String {
+        return runBlocking {
+            context.dataStore.data.first()[API_KEY] ?: ""
         }
     }
 
     fun getApiKeyFlow(): Flow<String> {
         return context.dataStore.data.map { preferences ->
             preferences[API_KEY] ?: ""
+        }
+    }
+
+    suspend fun markSetupComplete() {
+        context.dataStore.edit { preferences ->
+            preferences[SETUP_COMPLETE] = true
+        }
+    }
+
+    fun isSetupComplete(): Boolean {
+        return runBlocking {
+            context.dataStore.data.first()[SETUP_COMPLETE] ?: false
+        }
+    }
+
+    suspend fun saveLanguage(languageCode: String) {
+        context.dataStore.edit { preferences ->
+            preferences[LANGUAGE_KEY] = languageCode
+        }
+    }
+
+    fun getLanguage(): String {
+        return runBlocking {
+            context.dataStore.data.first()[LANGUAGE_KEY] ?: ""
         }
     }
 } 

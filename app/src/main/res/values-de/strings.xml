@@ -105,4 +105,17 @@
     <!-- Licenses -->
     <string name="licenses_title">Open-Source-Lizenzen</string>
     <string name="apache_license">Apache Lizenz 2.0</string>
+    
+    <!-- Language Settings -->
+    <string name="language_settings">Sprache</string>
+    <string name="language_system">Systemstandard</string>
+    <string name="language_english">Englisch</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_spanish">Spanisch</string>
+    <string name="language_french">Französisch</string>
+    <string name="language_italian">Italienisch</string>
+    
+    <!-- Weather Display -->
+    <string name="weather_forecast">Wettervorhersage</string>
+    <string name="weather_api_required">Wetterdaten sind nur mit einem gültigen OpenWeather API-Schlüssel verfügbar</string>
 </resources> 

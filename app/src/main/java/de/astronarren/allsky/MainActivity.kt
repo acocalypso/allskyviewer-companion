@@ -23,6 +23,7 @@ import de.astronarren.allsky.utils.LocationManager
 import de.astronarren.allsky.viewmodel.*
 import de.astronarren.allsky.data.WeatherRepository
 import de.astronarren.allsky.data.AllskyRepository
+import de.astronarren.allsky.utils.LanguageManager
 
 class MainActivity : ComponentActivity() {
     private val locationPermissionRequest = registerForActivityResult(
@@ -31,7 +32,6 @@ class MainActivity : ComponentActivity() {
         when {
             permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) ||
             permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
-                // Only trigger weather update when permission is granted
                 weatherViewModel.updateWeather()
             }
         }
@@ -42,9 +42,17 @@ class MainActivity : ComponentActivity() {
     private lateinit var imageViewerViewModel: ImageViewerViewModel
     private lateinit var setupViewModel: SetupViewModel
     private lateinit var liveImageViewModel: LiveImageViewModel
+    private lateinit var languageViewModel: LanguageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Initialize LanguageManager and ViewModel
+        val languageManager = LanguageManager(this) {
+            // Recreate activity when language changes
+            recreate()
+        }
+        languageViewModel = LanguageViewModel(languageManager)
         
         val userPreferences = UserPreferences(applicationContext)
         val locationManager = LocationManager(applicationContext)
@@ -104,6 +112,7 @@ class MainActivity : ComponentActivity() {
                                 allskyViewModel = allskyViewModel,
                                 imageViewerViewModel = imageViewerViewModel,
                                 liveImageViewModel = liveImageViewModel,
+                                languageManager = languageManager,
                                 onNavigateToAbout = { showAbout = true },
                                 onRequestLocationPermission = {
                                     locationPermissionRequest.launch(
