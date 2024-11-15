@@ -12,6 +12,7 @@
     <string name="about">Über</string>
     <string name="version_number">Version %s</string>
     <string name="open_about_description">Über öffnen</string>
+    <string name="open_settings_item">Einstellungselement öffnen</string>
     
     <!-- Weather Display -->
     <string name="grant_location_permission">Standortberechtigung erteilen</string>
@@ -125,4 +126,12 @@
     <string name="download_update">Update herunterladen</string>
     <string name="later">Später</string>
     <string name="downloading_update">Update wird heruntergeladen...</string>
+    <string name="update_available_badge">Update!</string>
+    <string name="app_status">App-Status</string>
+    <string name="up_to_date">Auf dem neuesten Stand</string>
+    <string name="checking_for_updates">Suche nach Updates...</string>
+    <string name="allsky_url_input_description">Geben Sie die Allsky-Server-URL ein</string>
+    <string name="api_key_input_description">OpenWeather API-Schlüssel eingeben</string>
+    <string name="save_settings_description">Einstellungen speichern</string>
+    <string name="invalid_url_error">Bitte geben Sie eine gültige URL ein, die mit http:// oder https:// beginnt</string>
 </resources> 

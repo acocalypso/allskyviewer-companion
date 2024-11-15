@@ -118,4 +118,13 @@
     <string name="download_update">Télécharger la mise à jour</string>
     <string name="later">Plus tard</string>
     <string name="downloading_update">Téléchargement de la mise à jour...</string>
+    <string name="update_available_badge">Mise à jour !</string>
+    <string name="open_settings_item">Ouvrir l\'élément de paramètres</string>
+    <string name="app_status">État de l\'application</string>
+    <string name="up_to_date">À jour</string>
+    <string name="checking_for_updates">Recherche de mises à jour...</string>
+    <string name="allsky_url_input_description">Entrez l\'URL du serveur Allsky</string>
+    <string name="api_key_input_description">Entrez la clé API OpenWeather</string>
+    <string name="save_settings_description">Enregistrer les paramètres</string>
+    <string name="invalid_url_error">Veuillez entrer une URL valide commençant par http:// ou https://</string>
 </resources> 

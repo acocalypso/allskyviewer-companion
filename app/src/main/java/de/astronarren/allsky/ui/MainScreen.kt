@@ -91,7 +91,8 @@ fun MainScreen(
                 },
                 onAboutClick = onNavigateToAbout,
                 userPreferences = userPreferences,
-                languageManager = languageManager
+                languageManager = languageManager,
+                updateViewModel = updateViewModel
             )
         }
     ) {
