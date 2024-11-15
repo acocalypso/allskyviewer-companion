@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">Allsky</string>
+    
+    <!-- Settings Panel -->
+    <string name="settings">Einstellungen</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="allsky_url">Allsky URL</string>
+    <string name="openweather_api_key">OpenWeather API-Schlüssel</string>
+    <string name="version">Version %1$s</string>
+    <string name="open_about">Über öffnen</string>
+    <string name="save">Speichern</string>
+    <string name="about">Über</string>
+    <string name="version_number">Version %s</string>
+    <string name="open_about_description">Über öffnen</string>
+    
+    <!-- Weather Display -->
+    <string name="grant_location_permission">Standortberechtigung erteilen</string>
+    <string name="location_format">%1$s, %2$s</string>
+    <string name="temperature_celsius">%.1f°C</string>
+    <string name="cloud_coverage">%d%%</string>
+    <string name="get_api_key">API-Schlüssel abrufen</string>
+    <string name="loading_weather">Wetterdaten werden geladen...</string>
+    <string name="location_permission_required">Standortberechtigung erforderlich</string>
+    <string name="location_permission_rationale">Wettervorhersagen benötigen eine Standortberechtigung, um genaue Daten für Ihren Bereich bereitzustellen.</string>
+    <string name="five_day_forecast">5-Tage-Wettervorhersage</string>
+    <string name="next_days">Nächste Tage</string>
+    <string name="feels_like">Gefühlt wie</string>
+    <string name="humidity">Luftfeuchtigkeit</string>
+    <string name="cloud_cover">Bewölkung</string>
+    
+    <!-- Setup Screen -->
+    <string name="start_setup">Setup starten</string>
+    <string name="next">Weiter</string>
+    <string name="complete_setup">Setup abschließen</string>
+    <string name="enter_allsky_url">Geben Sie die URL Ihrer Allsky-Installation ein</string>
+    <string name="api_key_description">Optional: Fügen Sie Ihren OpenWeather API-Schlüssel hinzu, um Wettervorhersagen zu sehen</string>
+    <string name="location_permission_note">Hinweis: Wettervorhersagen benötigen GPS-Berechtigung, um Ihren aktuellen Standort zu erkennen.</string>
+    <string name="permission_later">Sie können diese Berechtigung später erteilen.</string>
+    
+    <!-- Welcome Screen -->
+    <string name="welcome_title">Willkommen bei Allsky</string>
+    <string name="welcome_subtitle">Überwachen Sie Ihren Himmel mit dieser Allsky-Begleit-App</string>
+    <string name="learn_more">Mehr über Allsky erfahren</string>
+    <string name="allsky_url_title">Allsky URL</string>
+    <string name="openweather_title">OpenWeather API-Schlüssel</string>
+    
+    <!-- Moon Phases -->
+    <string name="moon_phase_new_moon">Neumond</string>
+    <string name="moon_phase_waxing_crescent">Zunehmender Sichelmond</string>
+    <string name="moon_phase_first_quarter">Erstes Viertel</string>
+    <string name="moon_phase_waxing_gibbous">Zunehmender Mond</string>
+    <string name="moon_phase_full_moon">Vollmond</string>
+    <string name="moon_phase_waning_gibbous">Abnehmender Mond</string>
+    <string name="moon_phase_last_quarter">Letztes Viertel</string>
+    <string name="moon_phase_waning_crescent">Abnehmender Sichelmond</string>
+    <string name="moon_illumination">Mondbeleuchtung</string>
+    <string name="moon_phase">Mondphase</string>
+    <string name="next_new_moon_in">Nächster Neumond in %d Tagen</string>
+    
+    <!-- Media Sections -->
+    <string name="timelapses">Zeitraffer</string>
+    <string name="keograms">Keogramme</string>
+    <string name="startrails">Sternspuren</string>
+    <string name="no_content_available">Keine Inhalte verfügbar</string>
+    <string name="media_from_date">Medien vom %s</string>
+    
+    <!-- About Screen -->
+    <string name="about_title">Allsky Begleit-App</string>
+    <string name="about_copyright">© 2024 astro-narren.de / AcoVanConis</string>
+    <string name="about_description">Überwachen Sie Ihre Allsky-Kamera, sehen Sie Wetterdaten und greifen Sie auf historische Aufnahmen zu.</string>
+    <string name="about_features">Funktionen</string>
+    <string name="about_features_list">• Live-Bildansicht mit 30-Sekunden-Aktualisierung\n• Mondphasen-Anzeige mit Beleuchtungsprozent\n• Lokale Wettervorhersage mit OpenWeather API\n• Medien-Galerien:\n  - Keogramme mit Vollbildansicht\n  - Sternspuren mit Vollbildansicht\n  - Zeitraffer-Videos\n• Dynamisches Design\n• Standortdienste</string>
+    <string name="about_version">Version %s</string>
+    <string name="about_components">Komponenten &amp; Bibliotheken</string>
+    <string name="about_components_list">• Jetpack Compose für moderne UI\n• Material Design 3\n• Kotlin Coroutines &amp; Flow\n• Retrofit für API-Aufrufe\n• Coil für Bildladung\n• DataStore für Einstellungen\n• Google Play Services Standort\n• AndroidX Navigation\n• AndroidX Lifecycle\n• Hilt für Dependency Injection</string>
+    
+    <!-- About Screen Features -->
+    <string name="feature_live_view_title">Live-Ansicht</string>
+    <string name="feature_live_view_desc">Live-Bildansicht mit 30-Sekunden-Aktualisierung</string>
+    <string name="feature_moon_phase_title">Mondphase</string>
+    <string name="feature_moon_phase_desc">Mondphasen-Anzeige mit Beleuchtungsprozent</string>
+    <string name="feature_weather_title">Wetter</string>
+    <string name="feature_weather_desc">Lokale Wettervorhersage mit OpenWeather API</string>
+    <string name="feature_media_title">Medien-Galerie</string>
+    <string name="feature_media_desc">Keogramme, Sternspuren und Zeitraffer-Videos mit Vollbildansicht</string>
+    <string name="feature_theme_title">Dynamisches Design</string>
+    <string name="feature_theme_desc">Unterstützt System-Design und Material You Farben</string>
+    
+    <!-- About Screen Components -->
+    <string name="component_section_ui">UI-Framework</string>
+    <string name="component_section_core">Kern-Bibliotheken</string>
+    <string name="component_section_android">Android-Komponenten</string>
+    
+    <!-- Component Links -->
+    <string name="component_jetpack_compose">Jetpack Compose</string>
+    <string name="component_material_design">Material Design 3</string>
+    <string name="component_coroutines">Kotlin Coroutines &amp; Flow</string>
+    <string name="component_retrofit">Retrofit</string>
+    <string name="component_coil">Coil</string>
+    <string name="component_datastore">DataStore</string>
+    <string name="component_play_services">Google Play Services Standort</string>
+    <string name="component_navigation">AndroidX Navigation</string>
+    <string name="component_lifecycle">AndroidX Lifecycle</string>
+    
+    <!-- Licenses -->
+    <string name="licenses_title">Open-Source-Lizenzen</string>
+    <string name="apache_license">Apache Lizenz 2.0</string>
+</resources> 
