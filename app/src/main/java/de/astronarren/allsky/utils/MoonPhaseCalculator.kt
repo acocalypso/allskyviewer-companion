@@ -4,6 +4,7 @@ import kotlin.math.floor
 import kotlin.math.cos
 import java.time.LocalDateTime
 import kotlin.math.PI
+import de.astronarren.allsky.R
 
 class MoonPhaseCalculator {
     companion object {
@@ -58,13 +59,13 @@ class MoonPhaseCalculator {
     }
 }
 
-enum class MoonPhase(val label: String, val icon: String) {
-    NEW_MOON("New Moon", "🌑"),
-    WAXING_CRESCENT("Waxing Crescent", "🌒"),
-    FIRST_QUARTER("First Quarter", "🌓"),
-    WAXING_GIBBOUS("Waxing Gibbous", "🌔"),
-    FULL_MOON("Full Moon", "🌕"),
-    WANING_GIBBOUS("Waning Gibbous", "🌖"),
-    LAST_QUARTER("Last Quarter", "🌗"),
-    WANING_CRESCENT("Waning Crescent", "🌘")
+enum class MoonPhase(val stringResId: Int, val emoji: String) {
+    NEW_MOON(R.string.moon_phase_new_moon, "🌑"),
+    WAXING_CRESCENT(R.string.moon_phase_waxing_crescent, "🌒"),
+    FIRST_QUARTER(R.string.moon_phase_first_quarter, "🌓"),
+    WAXING_GIBBOUS(R.string.moon_phase_waxing_gibbous, "🌔"),
+    FULL_MOON(R.string.moon_phase_full_moon, "🌕"),
+    WANING_GIBBOUS(R.string.moon_phase_waning_gibbous, "🌖"),
+    LAST_QUARTER(R.string.moon_phase_last_quarter, "🌗"),
+    WANING_CRESCENT(R.string.moon_phase_waning_crescent, "🌘")
 } 

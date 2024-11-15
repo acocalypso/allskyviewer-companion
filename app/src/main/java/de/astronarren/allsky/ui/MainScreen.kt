@@ -23,6 +23,8 @@ import kotlinx.coroutines.launch
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.compose.ui.res.stringResource
+import de.astronarren.allsky.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -221,13 +223,13 @@ fun MainScreen(
                         )
                     } else {
                         AllskyMediaSection(
-                            title = "Timelapses",
+                            title = stringResource(R.string.timelapses),
                             media = allskyUiState.timelapses,
                             onMediaClick = { /* Handle video playback differently */ }
                         )
 
                         AllskyMediaSection(
-                            title = "Keograms",
+                            title = stringResource(R.string.keograms),
                             media = allskyUiState.keograms,
                             onMediaClick = { media -> 
                                 println("Debug: Keogram clicked: ${media.url}")
@@ -236,7 +238,7 @@ fun MainScreen(
                         )
 
                         AllskyMediaSection(
-                            title = "Startrails",
+                            title = stringResource(R.string.startrails),
                             media = allskyUiState.startrails,
                             onMediaClick = { media -> 
                                 println("Debug: Startrail clicked: ${media.url}")

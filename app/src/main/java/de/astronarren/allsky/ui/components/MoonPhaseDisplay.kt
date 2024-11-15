@@ -13,6 +13,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import de.astronarren.allsky.R
 import de.astronarren.allsky.utils.MoonPhase
 import de.astronarren.allsky.utils.MoonPhaseCalculator
 import kotlin.math.roundToInt
@@ -50,7 +52,7 @@ fun MoonPhaseDisplay() {
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = moonPhase.icon,
+                    text = moonPhase.emoji,
                     style = MaterialTheme.typography.displayLarge
                 )
             }
@@ -59,16 +61,20 @@ fun MoonPhaseDisplay() {
             
             // Moon Phase Name
             Text(
-                text = moonPhase.label,
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold
+                text = stringResource(R.string.moon_phase),
+                style = MaterialTheme.typography.titleMedium
+            )
+            
+            Text(
+                text = "${moonPhase.emoji} ${stringResource(moonPhase.stringResId)}",
+                style = MaterialTheme.typography.headlineSmall
             )
             
             Spacer(modifier = Modifier.height(8.dp))
             
             // Days until new moon
             Text(
-                text = "Next new moon in ${daysUntilNewMoon.roundToInt()} days",
+                text = stringResource(R.string.next_new_moon_in, daysUntilNewMoon.roundToInt()),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -77,7 +83,7 @@ fun MoonPhaseDisplay() {
             
             // Illumination Percentage
             Text(
-                text = "Illumination: ${String.format("%.1f", illumination)}%",
+                text = stringResource(R.string.moon_illumination),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

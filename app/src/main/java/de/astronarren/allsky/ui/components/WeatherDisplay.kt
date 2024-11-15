@@ -15,6 +15,8 @@ import de.astronarren.allsky.data.City
 import java.text.SimpleDateFormat
 import java.util.*
 import de.astronarren.allsky.ui.state.WeatherUiState
+import androidx.compose.ui.res.stringResource
+import de.astronarren.allsky.R
 
 @Composable
 fun WeatherDisplay(
@@ -34,7 +36,7 @@ fun WeatherDisplay(
                 uiState.isLoading -> {
                     CircularProgressIndicator()
                     Text(
-                        text = "Loading weather data...",
+                        text = stringResource(R.string.loading_weather),
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
@@ -44,7 +46,7 @@ fun WeatherDisplay(
                         modifier = Modifier.padding(16.dp)
                     ) {
                         Text(
-                            text = "Location Permission Required",
+                            text = stringResource(R.string.location_permission_required),
                             style = MaterialTheme.typography.titleLarge,
                             textAlign = TextAlign.Center
                         )
@@ -52,7 +54,7 @@ fun WeatherDisplay(
                         Spacer(modifier = Modifier.height(8.dp))
                         
                         Text(
-                            text = "Weather forecasts require location permission to provide accurate data for your area.",
+                            text = stringResource(R.string.location_permission_rationale),
                             style = MaterialTheme.typography.bodyMedium,
                             textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -64,7 +66,7 @@ fun WeatherDisplay(
                             onClick = onRequestPermission,
                             modifier = Modifier.fillMaxWidth(0.8f)
                         ) {
-                            Text("Grant Location Permission")
+                            Text(stringResource(R.string.grant_location_permission))
                         }
                     }
                 }
@@ -79,13 +81,17 @@ fun WeatherDisplay(
                     
                     // Location Header
                     Text(
-                        text = "${city.name}, ${city.country}",
+                        text = stringResource(
+                            R.string.location_format,
+                            city.name,
+                            city.country
+                        ),
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.primary
                     )
                     
                     Text(
-                        text = "5-Day Weather Forecast",
+                        text = stringResource(R.string.five_day_forecast),
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(top = 8.dp)
@@ -104,7 +110,7 @@ fun WeatherDisplay(
                     
                     // 5-Day Forecast
                     Text(
-                        text = "Next Days",
+                        text = stringResource(R.string.next_days),
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier
                             .align(Alignment.Start)
@@ -132,8 +138,11 @@ private fun CurrentWeather(weather: WeatherData) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "${String.format("%.1f", weather.main.temp)}°C",
-            style = MaterialTheme.typography.displayMedium,
+            text = stringResource(
+                R.string.temperature_celsius,
+                weather.main.temp
+            ),
+            style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.primary
         )
         
@@ -150,16 +159,16 @@ private fun CurrentWeather(weather: WeatherData) {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             WeatherInfo(
-                label = "Feels like",
+                label = stringResource(R.string.feels_like),
                 value = "${String.format("%.1f", weather.main.feels_like)}°C"
             )
             WeatherInfo(
-                label = "Humidity",
+                label = stringResource(R.string.humidity),
                 value = "${weather.main.humidity}%"
             )
             WeatherInfo(
-                label = "Cloud Cover",
-                value = "${weather.clouds.all}%"
+                label = stringResource(R.string.cloud_cover),
+                value = stringResource(R.string.cloud_coverage, weather.clouds.all)
             )
         }
     }
@@ -222,4 +231,4 @@ private fun formatDay(timestamp: Long): String {
 
 private fun String.capitalize(): String {
     return this.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-} 
+}

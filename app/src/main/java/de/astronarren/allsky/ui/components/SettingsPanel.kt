@@ -8,8 +8,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import de.astronarren.allsky.data.UserPreferences
+import de.astronarren.allsky.R
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,7 +41,7 @@ fun SettingsPanel(
                     .padding(16.dp)
             ) {
                 Text(
-                    "Settings",
+                    stringResource(R.string.settings_title),
                     style = MaterialTheme.typography.headlineMedium,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
@@ -47,7 +49,7 @@ fun SettingsPanel(
                 OutlinedTextField(
                     value = urlInput,
                     onValueChange = { urlInput = it },
-                    label = { Text("Allsky URL") },
+                    label = { Text(stringResource(R.string.allsky_url)) },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true
                 )
@@ -57,7 +59,7 @@ fun SettingsPanel(
                 OutlinedTextField(
                     value = apiKeyInput,
                     onValueChange = { apiKeyInput = it },
-                    label = { Text("OpenWeather API Key") },
+                    label = { Text(stringResource(R.string.openweather_api_key)) },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true
                 )
@@ -72,7 +74,7 @@ fun SettingsPanel(
                     },
                     modifier = Modifier.padding(top = 16.dp)
                 ) {
-                    Text("Save")
+                    Text(stringResource(R.string.save))
                 }
                 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -91,18 +93,18 @@ fun SettingsPanel(
                 ) {
                     Column {
                         Text(
-                            text = "About",
+                            text = stringResource(R.string.about),
                             style = MaterialTheme.typography.titleMedium
                         )
                         Text(
-                            text = "Version 1.0",
+                            text = stringResource(R.string.version_number, "1.0"),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                        contentDescription = "Open About",
+                        contentDescription = stringResource(R.string.open_about_description),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }

@@ -12,6 +12,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import de.astronarren.allsky.viewmodel.SetupViewModel
+import androidx.compose.ui.res.stringResource
+import de.astronarren.allsky.R
 
 @Composable
 fun SetupScreen(
@@ -56,21 +58,21 @@ private fun WelcomeStep(onNext: () -> Unit) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Welcome to Allsky",
+            text = stringResource(R.string.welcome_title),
             style = MaterialTheme.typography.headlineLarge
         )
         
         Spacer(modifier = Modifier.height(16.dp))
         
         Text(
-            text = "Monitor your sky with this Allsky companion app",
+            text = stringResource(R.string.welcome_subtitle),
             style = MaterialTheme.typography.bodyLarge
         )
         
         Spacer(modifier = Modifier.height(24.dp))
         
         Text(
-            text = "Learn more about Allsky",
+            text = stringResource(R.string.learn_more),
             style = MaterialTheme.typography.bodyMedium.copy(
                 textDecoration = TextDecoration.Underline,
                 color = MaterialTheme.colorScheme.primary
@@ -83,7 +85,7 @@ private fun WelcomeStep(onNext: () -> Unit) {
         Spacer(modifier = Modifier.height(32.dp))
         
         Button(onClick = onNext) {
-            Text("Start Setup")
+            Text(stringResource(R.string.start_setup))
         }
     }
 }
@@ -108,7 +110,7 @@ private fun UrlStep(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Allsky URL",
+            text = stringResource(R.string.allsky_url_title),
             style = MaterialTheme.typography.headlineMedium
         )
         
@@ -160,7 +162,7 @@ private fun ApiKeyStep(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "OpenWeather API Key",
+            text = stringResource(R.string.openweather_title),
             style = MaterialTheme.typography.headlineMedium
         )
         

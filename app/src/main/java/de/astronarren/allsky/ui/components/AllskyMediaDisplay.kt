@@ -8,9 +8,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import de.astronarren.allsky.viewmodel.AllskyMediaUiState
+import de.astronarren.allsky.R
 
 @Composable
 fun AllskyMediaSection(
@@ -31,7 +33,7 @@ fun AllskyMediaSection(
 
         if (media.isEmpty()) {
             Text(
-                text = "No content available",
+                text = stringResource(R.string.no_content_available),
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(16.dp)
             )
@@ -65,7 +67,7 @@ private fun MediaCard(
         Column {
             AsyncImage(
                 model = media.url,
-                contentDescription = "Media from ${media.date}",
+                contentDescription = stringResource(R.string.media_from_date, media.date),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(100.dp),
