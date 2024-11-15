@@ -34,6 +34,19 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Install Android SDK
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -O cmdline-tools.zip
+          mkdir -p $HOME/android-sdk/cmdline-tools
+          unzip -q cmdline-tools.zip -d $HOME/android-sdk/cmdline-tools
+          mv $HOME/android-sdk/cmdline-tools/cmdline-tools $HOME/android-sdk/cmdline-tools/latest
+          export ANDROID_HOME=$HOME/android-sdk
+          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/build-tools/29.0.3:$PATH
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "build-tools;29.0.3"
+
       - name: Update version name in build.gradle
         run: |
           sed -i "s/versionName = \".*\"/versionName = \"${{ inputs.version }}\"/" app/build.gradle.kts
@@ -72,4 +85,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{steps.sign_app.outputs.signedReleaseFile}}
           asset_name: allsky-companion-${{ inputs.version }}.apk
-          asset_content_type: application/vnd.android.package-archive 
+          asset_content_type: application/vnd.android.package-archive
