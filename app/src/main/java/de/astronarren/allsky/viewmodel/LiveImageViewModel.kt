@@ -23,7 +23,11 @@ class LiveImageViewModel(
     private fun startImageRefresh() {
         viewModelScope.launch {
             while (true) {
-                updateImage()
+                try {
+                    updateImage()
+                } catch (e: Exception) {
+                    _uiState.update { it.copy(error = e.message) }
+                }
                 delay(30_000) // 30 seconds
             }
         }
@@ -40,11 +44,16 @@ class LiveImageViewModel(
     private suspend fun updateImage(baseUrl: String? = null) {
         val url = baseUrl ?: userPreferences.getAllskyUrl()
         if (url.isNotEmpty()) {
-            _uiState.update { currentState ->
-                currentState.copy(
-                    imageUrl = "$url/image.jpg?t=${System.currentTimeMillis()}",
-                    lastUpdate = System.currentTimeMillis()
-                )
+            try {
+                _uiState.update { currentState ->
+                    currentState.copy(
+                        imageUrl = "$url/image.jpg?t=${System.currentTimeMillis()}",
+                        lastUpdate = System.currentTimeMillis(),
+                        error = null // Clear any previous errors
+                    )
+                }
+            } catch (e: Exception) {
+                _uiState.update { it.copy(error = e.message) }
             }
         }
     }

@@ -34,6 +34,17 @@ class WeatherViewModel(
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, error = null) }
             
+            val apiKey = userPreferences.getApiKey()
+            if (apiKey.isBlank()) {
+                _uiState.update { 
+                    it.copy(
+                        isLoading = false,
+                        error = "weather_api_required"
+                    )
+                }
+                return@launch
+            }
+            
             weatherRepository.getForecast()
                 .onSuccess { response ->
                     val dailyForecasts = response.list

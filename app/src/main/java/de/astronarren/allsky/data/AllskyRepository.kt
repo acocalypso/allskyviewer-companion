@@ -12,8 +12,11 @@ class AllskyRepository(private val userPreferences: UserPreferences) {
             try {
                 val baseUrl = userPreferences.getAllskyUrl()
                 if (baseUrl.isEmpty()) {
-                    println("Debug: No Allsky URL configured")
                     return@withContext AllskyContent(emptyList(), emptyList(), emptyList())
+                }
+
+                if (!baseUrl.startsWith("http://") && !baseUrl.startsWith("https://")) {
+                    throw IllegalArgumentException("Invalid URL format")
                 }
 
                 println("Debug: Fetching content from Allsky: $baseUrl")
@@ -40,8 +43,7 @@ class AllskyRepository(private val userPreferences: UserPreferences) {
                 )
             } catch (e: Exception) {
                 println("Debug: Error fetching allsky content: ${e.message}")
-                e.printStackTrace()
-                AllskyContent(emptyList(), emptyList(), emptyList())
+                throw e
             }
         }
     }

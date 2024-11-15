@@ -4,6 +4,21 @@ All notable changes to the Allsky Companion App will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2024-03-19
+### Improved
+- Enhanced error handling in weather data fetching
+- More robust URL validation for Allsky server connection
+- Better error messages for users when API key is missing
+- Improved stability of live image updates
+- Added debug logging for better troubleshooting
+- Enhanced error handling in media gallery parsing
+
+### Fixed
+- Proper error handling for invalid Allsky URLs
+- Better handling of missing weather API keys
+- Improved error state management in LiveImageViewModel
+- More robust parsing of media gallery items
+
 ## [1.1.0] - 2024-11-15
 ### Added
 - Multi-language support
