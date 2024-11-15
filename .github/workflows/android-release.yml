@@ -63,6 +63,11 @@ jobs:
         env:
           BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
 
+      - name: Rename APK
+        run: |
+          mv ${{steps.sign_app.outputs.signedReleaseFile}} allsky-companion-${{ inputs.version }}.apk
+          echo "RELEASE_APK=allsky-companion-${{ inputs.version }}.apk" >> $GITHUB_ENV
+
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
@@ -71,7 +76,7 @@ jobs:
         with:
           name: Release ${{ inputs.version }}
           tag_name: v${{ inputs.version }}
-          files: ${{steps.sign_app.outputs.signedReleaseFile}}
+          files: ${{ env.RELEASE_APK }}
           draft: false
           prerelease: ${{ inputs.prerelease }}
           generate_release_notes: true
