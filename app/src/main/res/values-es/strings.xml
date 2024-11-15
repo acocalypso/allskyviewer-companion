@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Allsky</string>
+    
+    <!-- Settings Panel -->
+    <string name="settings">Ajustes</string>
+    <string name="settings_title">Ajustes</string>
+    <string name="allsky_url">URL de Allsky</string>
+    <string name="openweather_api_key">Clave API de OpenWeather</string>
+    <string name="version">Versión %1$s</string>
+    <string name="open_about">Abrir Acerca de</string>
+    <string name="save">Guardar</string>
+    <string name="about">Acerca de</string>
+    
+    <!-- Weather Display -->
+    <string name="loading_weather">Cargando datos meteorológicos...</string>
+    <string name="location_permission_required">Se requiere permiso de ubicación</string>
+    <string name="grant_location_permission">Conceder permiso de ubicación</string>
+    <string name="five_day_forecast">Pronóstico de 5 días</string>
+    <string name="feels_like">Sensación</string>
+    <string name="humidity">Humedad</string>
+    <string name="cloud_cover">Nubosidad</string>
+    
+    <!-- Moon Phases -->
+    <string name="moon_phase">Fase lunar</string>
+    <string name="moon_illumination">Iluminación lunar</string>
+    <string name="next_new_moon_in">Próxima luna nueva en %d días</string>
+    <string name="moon_phase_new_moon">Luna Nueva</string>
+    <string name="moon_phase_waxing_crescent">Luna Creciente</string>
+    <string name="moon_phase_first_quarter">Cuarto Creciente</string>
+    <string name="moon_phase_waxing_gibbous">Luna Gibosa Creciente</string>
+    <string name="moon_phase_full_moon">Luna Llena</string>
+    <string name="moon_phase_waning_gibbous">Luna Gibosa Menguante</string>
+    <string name="moon_phase_last_quarter">Cuarto Menguante</string>
+    <string name="moon_phase_waning_crescent">Luna Menguante</string>
+    
+    <!-- About Screen -->
+    <string name="about_title">Aplicación Allsky</string>
+    <string name="about_description">Monitoree su cámara Allsky, vea datos meteorológicos y acceda a capturas históricas.</string>
+    <string name="about_features">Características</string>
+    <string name="about_components">Componentes y Bibliotecas</string>
+    <string name="feature_live_view_title">Vista en Vivo</string>
+    <string name="feature_live_view_desc">Vista en vivo con actualización cada 30 segundos</string>
+    <string name="feature_moon_phase_title">Fase Lunar</string>
+    <string name="feature_moon_phase_desc">Visualización de fase lunar con porcentaje de iluminación</string>
+    <string name="feature_weather_title">Clima</string>
+    <string name="feature_weather_desc">Pronóstico local usando API de OpenWeather</string>
+    <string name="feature_media_title">Galería de Medios</string>
+    <string name="feature_media_desc">Keogramas, rastros de estrellas y videos time-lapse con visor a pantalla completa</string>
+    <string name="feature_theme_title">Tema Dinámico</string>
+    <string name="feature_theme_desc">Compatible con tema del sistema y colores Material You</string>
+    <string name="component_section_ui">Framework UI</string>
+    <string name="component_section_core">Bibliotecas Core</string>
+    <string name="component_section_android">Componentes Android</string>
+    <string name="component_jetpack_compose">Jetpack Compose</string>
+    <string name="component_material_design">Material Design 3</string>
+    <string name="component_coroutines">Kotlin Coroutines &amp; Flow</string>
+    <string name="component_retrofit">Retrofit</string>
+    <string name="component_coil">Coil</string>
+    <string name="component_datastore">DataStore</string>
+    <string name="component_play_services">Google Play Services Ubicación</string>
+    <string name="component_navigation">AndroidX Navigation</string>
+    <string name="component_lifecycle">AndroidX Lifecycle</string>
+    <string name="licenses_title">Licencias de Código Abierto</string>
+    <string name="apache_license">Licencia Apache 2.0</string>
+</resources> 

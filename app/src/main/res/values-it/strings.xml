@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Allsky</string>
+    
+    <!-- Settings Panel -->
+    <string name="settings">Impostazioni</string>
+    <string name="settings_title">Impostazioni</string>
+    <string name="allsky_url">URL Allsky</string>
+    <string name="openweather_api_key">Chiave API OpenWeather</string>
+    <string name="version">Versione %1$s</string>
+    <string name="open_about">Apri Info</string>
+    <string name="save">Salva</string>
+    <string name="about">Info</string>
+    
+    <!-- Weather Display -->
+    <string name="loading_weather">Caricamento dati meteo...</string>
+    <string name="location_permission_required">Permesso di localizzazione richiesto</string>
+    <string name="grant_location_permission">Concedi permesso di localizzazione</string>
+    <string name="five_day_forecast">Previsioni 5 giorni</string>
+    <string name="feels_like">Percepita</string>
+    <string name="humidity">Umidità</string>
+    <string name="cloud_cover">Copertura nuvolosa</string>
+    
+    <!-- Moon Phases -->
+    <string name="moon_phase">Fase lunare</string>
+    <string name="moon_illumination">Illuminazione lunare</string>
+    <string name="next_new_moon_in">Prossima luna nuova tra %d giorni</string>
+    
+    <!-- About Screen -->
+    <string name="about_title">App Allsky</string>
+    <string name="about_description">Monitora la tua camera Allsky, visualizza i dati meteo e accedi alle catture storiche.</string>
+    <string name="about_features">Funzionalità</string>
+    <string name="about_components">Componenti e Librerie</string>
+</resources> 
