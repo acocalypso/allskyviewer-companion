@@ -20,6 +20,7 @@ import de.astronarren.allsky.R
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.foundation.clickable
+import de.astronarren.allsky.BuildConfig
 
 // Update data class to not use stringResource directly
 private data class ComponentInfo(
@@ -94,7 +95,10 @@ fun AboutScreen(
             )
             
             Text(
-                text = stringResource(R.string.about_version, "1.0"),
+                text = stringResource(
+                    R.string.about_version,
+                    BuildConfig.VERSION_NAME
+                ),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 8.dp)

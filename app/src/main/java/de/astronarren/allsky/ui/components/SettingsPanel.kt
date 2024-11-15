@@ -16,6 +16,7 @@ import de.astronarren.allsky.R
 import de.astronarren.allsky.utils.AppLanguage
 import de.astronarren.allsky.utils.LanguageManager
 import kotlinx.coroutines.launch
+import de.astronarren.allsky.BuildConfig
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -125,7 +126,10 @@ fun SettingsPanel(
                             style = MaterialTheme.typography.titleMedium
                         )
                         Text(
-                            text = stringResource(R.string.version_number, "1.0"),
+                            text = stringResource(
+                                R.string.version_number,
+                                BuildConfig.VERSION_NAME
+                            ),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
