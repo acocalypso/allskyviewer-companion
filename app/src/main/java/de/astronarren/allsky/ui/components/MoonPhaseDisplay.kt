@@ -88,6 +88,14 @@ fun MoonPhaseDisplay() {
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             
+            // Add illumination percentage text
+            Text(
+                text = "%.1f%%".format(illumination),
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = FontWeight.Bold
+            )
+            
             // Progress Indicator
             LinearProgressIndicator(
                 modifier = Modifier

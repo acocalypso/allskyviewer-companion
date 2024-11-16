@@ -1,59 +1,60 @@
 package de.astronarren.allsky.utils
 
-import kotlin.math.floor
-import kotlin.math.cos
 import java.time.LocalDateTime
+import java.time.ZoneOffset
+import kotlin.math.cos
 import kotlin.math.PI
 import de.astronarren.allsky.R
 
 class MoonPhaseCalculator {
     companion object {
-        private const val LUNAR_MONTH = 29.53059
+        // Lunar cycle constant in days
+        private const val LUNAR_CYCLE = 29.53058770576
+        
+        // First new moon of 2000 was on January 6 at 18:14 UTC
+        private val NEW_MOON_2000 = LocalDateTime.of(2000, 1, 6, 18, 14)
+            .toEpochSecond(ZoneOffset.UTC)
 
         fun calculateMoonPhase(): MoonPhase {
-            val moonAge = getMoonAge()
+            val fraction = getCurrentMoonCycleFraction()
             
             return when {
-                moonAge < 1.84566 -> MoonPhase.NEW_MOON
-                moonAge < 5.53699 -> MoonPhase.WAXING_CRESCENT
-                moonAge < 9.22831 -> MoonPhase.FIRST_QUARTER
-                moonAge < 12.91963 -> MoonPhase.WAXING_GIBBOUS
-                moonAge < 16.61096 -> MoonPhase.FULL_MOON
-                moonAge < 20.30228 -> MoonPhase.WANING_GIBBOUS
-                moonAge < 23.99361 -> MoonPhase.LAST_QUARTER
-                moonAge < 27.68493 -> MoonPhase.WANING_CRESCENT
+                fraction < 0.033863193308711 -> MoonPhase.NEW_MOON
+                fraction < 0.216136806691289 -> MoonPhase.WAXING_CRESCENT
+                fraction < 0.283863193308711 -> MoonPhase.FIRST_QUARTER
+                fraction < 0.466136806691289 -> MoonPhase.WAXING_GIBBOUS
+                fraction < 0.533863193308711 -> MoonPhase.FULL_MOON
+                fraction < 0.716136806691289 -> MoonPhase.WANING_GIBBOUS
+                fraction < 0.783863193308711 -> MoonPhase.LAST_QUARTER
+                fraction < 0.966136806691289 -> MoonPhase.WANING_CRESCENT
                 else -> MoonPhase.NEW_MOON
             }
         }
 
         fun getDaysUntilNewMoon(): Double {
-            val moonAge = getMoonAge()
-            return LUNAR_MONTH - moonAge
+            val fraction = getCurrentMoonCycleFraction()
+            return LUNAR_CYCLE * (1.0 - fraction)
         }
 
-        private fun getMoonAge(): Double {
-            val now = LocalDateTime.now()
+        private fun getCurrentMoonCycleFraction(): Double {
+            val now = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
+            val totalSeconds = now - NEW_MOON_2000
+            val lunarSeconds = LUNAR_CYCLE * 24 * 60 * 60
             
-            // JDN calculation
-            val year = now.year
-            val month = now.monthValue
-            val day = now.dayOfMonth
+            // Get position in current cycle
+            var currentSeconds = totalSeconds % lunarSeconds
             
-            val jdn = (367 * year -
-                    floor(7 * (year + floor((month + 9) / 12.0)) / 4.0) +
-                    floor(275 * month / 9.0) +
-                    day - 730530).toDouble()
+            // Handle dates before 2000
+            if (currentSeconds < 0) {
+                currentSeconds += lunarSeconds
+            }
             
-            // Calculate moon's age in days
-            return (jdn % LUNAR_MONTH).toDouble()
+            return currentSeconds / lunarSeconds
         }
 
         fun getIllumination(): Double {
-            val now = LocalDateTime.now()
-            val daysSince2000 = (now.toLocalDate().toEpochDay() - 
-                    LocalDateTime.of(2000, 1, 1, 0, 0).toLocalDate().toEpochDay())
-            
-            val phase = 2.0 * PI * ((daysSince2000 % LUNAR_MONTH) / LUNAR_MONTH)
+            val fraction = getCurrentMoonCycleFraction()
+            val phase = 2.0 * PI * fraction
             return ((1.0 - cos(phase)) / 2.0) * 100.0
         }
     }
