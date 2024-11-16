@@ -28,6 +28,7 @@ import de.astronarren.allsky.R
 import de.astronarren.allsky.utils.LanguageManager
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.foundation.clickable
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,6 +60,8 @@ fun MainScreen(
         factory = UpdateViewModelFactory()
     )
     val updateState by updateViewModel.uiState.collectAsState()
+    
+    var currentVideo by remember { mutableStateOf<String?>(null) }
     
     LaunchedEffect(Unit) {
         apiKey = userPreferences.getApiKey()
@@ -133,7 +136,10 @@ fun MainScreen(
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(300.dp),
+                                .height(300.dp)
+                                .clickable { 
+                                    imageViewerViewModel.showImage(liveImageState.imageUrl)
+                                },
                             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                         ) {
                             Box(modifier = Modifier.fillMaxSize()) {
@@ -244,14 +250,16 @@ fun MainScreen(
                         AllskyMediaSection(
                             title = stringResource(R.string.timelapses),
                             media = allskyUiState.timelapses,
-                            onMediaClick = { /* Handle video playback differently */ }
+                            onMediaClick = { media -> 
+                                currentVideo = media.url
+                            },
+                            isVideo = true
                         )
 
                         AllskyMediaSection(
                             title = stringResource(R.string.keograms),
                             media = allskyUiState.keograms,
                             onMediaClick = { media -> 
-                                println("Debug: Keogram clicked: ${media.url}")
                                 imageViewerViewModel.showImage(media.url)
                             }
                         )
@@ -260,7 +268,6 @@ fun MainScreen(
                             title = stringResource(R.string.startrails),
                             media = allskyUiState.startrails,
                             onMediaClick = { media -> 
-                                println("Debug: Startrail clicked: ${media.url}")
                                 imageViewerViewModel.showImage(media.url)
                             }
                         )
@@ -272,6 +279,13 @@ fun MainScreen(
                     FullScreenImageViewer(
                         imageUrl = imageViewerState.currentImageUrl!!,
                         onDismiss = { imageViewerViewModel.dismissImage() }
+                    )
+                }
+
+                if (currentVideo != null) {
+                    VideoPlayer(
+                        videoUrl = currentVideo!!,
+                        onDismiss = { currentVideo = null }
                     )
                 }
             }

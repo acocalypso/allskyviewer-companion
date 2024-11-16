@@ -3,10 +3,13 @@ package de.astronarren.allsky.ui.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -18,7 +21,8 @@ import de.astronarren.allsky.R
 fun AllskyMediaSection(
     title: String,
     media: List<AllskyMediaUiState>,
-    onMediaClick: (AllskyMediaUiState) -> Unit
+    onMediaClick: (AllskyMediaUiState) -> Unit,
+    isVideo: Boolean = false
 ) {
     Column(
         modifier = Modifier
@@ -45,7 +49,8 @@ fun AllskyMediaSection(
                 items(media) { item ->
                     MediaCard(
                         media = item,
-                        onClick = { onMediaClick(item) }
+                        onClick = { onMediaClick(item) },
+                        isVideo = isVideo
                     )
                 }
             }
@@ -56,7 +61,8 @@ fun AllskyMediaSection(
 @Composable
 private fun MediaCard(
     media: AllskyMediaUiState,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    isVideo: Boolean = false
 ) {
     Card(
         modifier = Modifier
@@ -65,14 +71,28 @@ private fun MediaCard(
         onClick = onClick
     ) {
         Column {
-            AsyncImage(
-                model = media.url,
-                contentDescription = stringResource(R.string.media_from_date, media.date),
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp),
-                contentScale = ContentScale.Crop
-            )
+                    .height(100.dp)
+            ) {
+                AsyncImage(
+                    model = media.url,
+                    contentDescription = stringResource(R.string.media_from_date, media.date),
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+                if (isVideo) {
+                    Icon(
+                        imageVector = Icons.Default.PlayCircle,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(40.dp)
+                            .align(Alignment.Center),
+                        tint = Color.White.copy(alpha = 0.8f)
+                    )
+                }
+            }
             Text(
                 text = media.date,
                 style = MaterialTheme.typography.bodyMedium,
