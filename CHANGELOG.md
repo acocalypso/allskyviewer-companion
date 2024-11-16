@@ -4,6 +4,18 @@ All notable changes to the Allsky Companion App will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.2] - 2024-11-16
+### Fixed
+- Fixed moon phase calculation accuracy
+- Improved moon phase illumination calculation
+- Updated moon phase boundaries for better precision
+- Added illumination percentage display to moon phase card
+
+### Changed
+- Upgraded to Media3 for video playback
+- Replaced deprecated ExoPlayer components
+- Enhanced video player stability
+
 ## [1.1.1] - 2024-11-15
 ### Improved
 - Enhanced error handling in weather data fetching
