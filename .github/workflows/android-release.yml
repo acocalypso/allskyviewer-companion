@@ -30,7 +30,7 @@ jobs:
       - name: Extract latest changelog entry
         id: changelog
         run: |
-          LATEST=$(awk '/^## \[/{p=NR+1}(NR<=p){print}' CHANGELOG.md | head -n -2)
+          LATEST=$(sed -n '/^## \[[0-9]\+\.[0-9]\+\.[0-9]\+\]/,/^## \[/p' CHANGELOG.md | head -n -1 | tail -n +2)
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$LATEST" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
