@@ -27,6 +27,14 @@ jobs:
           echo "Version found: $VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
+      - name: Extract latest changelog entry
+        id: changelog
+        run: |
+          LATEST=$(sed -n '/^## \[/,/^## \[/p' CHANGELOG.md | head -n -1)
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$LATEST" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
 
@@ -75,7 +83,7 @@ jobs:
         with:
           name: Release ${{ steps.get_version.outputs.version }}
           tag_name: v${{ steps.get_version.outputs.version }}
+          body: ${{ steps.changelog.outputs.changelog }}
           files: ${{ env.RELEASE_APK }}
           draft: false
           prerelease: ${{ inputs.prerelease }}
-          generate_release_notes: true

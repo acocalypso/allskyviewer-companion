@@ -4,6 +4,21 @@ All notable changes to the Allsky Companion App will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3] - 2024-11-17
+### Added
+- Home screen widget for live Allsky image
+  - Manual refresh functionality
+  - Last update timestamp display
+  - Error state handling
+  - Loading state indication
+  - Configurable size
+
+### Fixed
+- Update dialog "Later" button now properly closes dialog
+- Settings panel now correctly shows update status
+- Added version number to update available message
+- Improved update state handling in settings
+
 ## [1.1.2] - 2024-11-16
 ### Fixed
 - Fixed moon phase calculation accuracy
