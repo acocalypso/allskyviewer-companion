@@ -137,4 +137,9 @@
     <string name="live_allsky_image" translatable="false">Live Allsky Image</string>
     <string name="loading_description" translatable="false">Loading content</string>
     <string name="allsky_url_input" translatable="false">Allsky URL</string>
+    <string name="widget_description">Shows live Allsky image</string>
+    <string name="widget_refreshing">Refreshing image...</string>
+    <string name="widget_error">Error loading image</string>
+    <string name="widget_no_url">No Allsky URL configured</string>
+    <string name="widget_refresh">Refresh</string>
 </resources>

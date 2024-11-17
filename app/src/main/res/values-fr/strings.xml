@@ -127,4 +127,10 @@
     <string name="api_key_input_description">Entrez la clé API OpenWeather</string>
     <string name="save_settings_description">Enregistrer les paramètres</string>
     <string name="invalid_url_error">Veuillez entrer une URL valide commençant par http:// ou https://</string>
+
+    <string name="widget_description">Affiche l\'image Allsky en direct</string>
+    <string name="widget_refreshing">Actualisation de l\'image...</string>
+    <string name="widget_error">Erreur de chargement de l\'image</string>
+    <string name="widget_no_url">URL Allsky non configurée</string>
+    <string name="widget_refresh">Actualiser</string>
 </resources> 
