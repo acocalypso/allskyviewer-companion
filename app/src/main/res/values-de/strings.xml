@@ -140,4 +140,5 @@
     <string name="widget_error">Fehler beim Laden des Bildes</string>
     <string name="widget_no_url">Keine Allsky-URL konfiguriert</string>
     <string name="widget_refresh">Aktualisieren</string>
+    <string name="update_available_status">Update auf Version %s verfügbar</string>
 </resources> 

@@ -133,4 +133,5 @@
     <string name="widget_error">Erreur de chargement de l\'image</string>
     <string name="widget_no_url">URL Allsky non configurée</string>
     <string name="widget_refresh">Actualiser</string>
+    <string name="update_available_status">Mise à jour vers la version %s disponible</string>
 </resources> 

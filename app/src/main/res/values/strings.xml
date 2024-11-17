@@ -142,4 +142,5 @@
     <string name="widget_error">Error loading image</string>
     <string name="widget_no_url">No Allsky URL configured</string>
     <string name="widget_refresh">Refresh</string>
+    <string name="update_available_status">Update to version %s available</string>
 </resources>

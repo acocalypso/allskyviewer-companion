@@ -104,8 +104,13 @@ fun SettingsPanel(
                             )
                             Text(
                                 text = when (updateState) {
-                                    is UpdateUiState.UpdateAvailable -> stringResource(R.string.update_available)
-                                    UpdateUiState.Checking -> stringResource(R.string.checking_for_updates)
+                                    is UpdateUiState.UpdateAvailable -> stringResource(
+                                        R.string.update_available_status, 
+                                        (updateState as UpdateUiState.UpdateAvailable).updateInfo.latestVersion
+                                    )
+                                    is UpdateUiState.Checking -> stringResource(R.string.checking_for_updates)
+                                    is UpdateUiState.NoUpdate -> stringResource(R.string.up_to_date)
+                                    is UpdateUiState.Downloading -> stringResource(R.string.up_to_date)
                                     else -> stringResource(R.string.up_to_date)
                                 },
                                 style = MaterialTheme.typography.bodyMedium,

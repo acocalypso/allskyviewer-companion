@@ -9,38 +9,35 @@ import de.astronarren.allsky.data.UpdateInfo
 
 @Composable
 fun UpdateDialog(
-    updateInfo: UpdateInfo,
+    showDialog: Boolean,
     onDismiss: () -> Unit,
-    onDownload: (UpdateInfo) -> Unit
+    onDownload: () -> Unit,
+    version: String,
+    changelog: String
 ) {
-    val context = LocalContext.current
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(stringResource(R.string.update_available)) },
-        text = {
-            Text(
-                stringResource(
-                    R.string.update_dialog_message,
-                    updateInfo.latestVersion,
-                    updateInfo.releaseNotes
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = onDismiss,
+            title = { Text(stringResource(R.string.update_available)) },
+            text = {
+                Text(
+                    stringResource(
+                        R.string.update_dialog_message,
+                        version,
+                        changelog
+                    )
                 )
-            )
-        },
-        confirmButton = {
-            Button(
-                onClick = { 
-                    onDownload(updateInfo)
-                    onDismiss()
+            },
+            confirmButton = {
+                TextButton(onClick = onDownload) {
+                    Text(stringResource(R.string.download_update))
                 }
-            ) {
-                Text(stringResource(R.string.download_update))
+            },
+            dismissButton = {
+                TextButton(onClick = onDismiss) {
+                    Text(stringResource(R.string.later))
+                }
             }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text(stringResource(R.string.later))
-            }
-        }
-    )
+        )
+    }
 } 

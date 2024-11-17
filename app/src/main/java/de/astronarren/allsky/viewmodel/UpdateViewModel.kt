@@ -1,10 +1,11 @@
 package de.astronarren.allsky.viewmodel
 
+import android.app.Application
 import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import de.astronarren.allsky.BuildConfig
 import de.astronarren.allsky.data.UpdateInfo
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class UpdateViewModel : ViewModel() {
+class UpdateViewModel(application: Application) : AndroidViewModel(application) {
     private val updateRepository = UpdateRepository()
     private val _uiState = MutableStateFlow<UpdateUiState>(UpdateUiState.NoUpdate)
     val uiState: StateFlow<UpdateUiState> = _uiState.asStateFlow()
@@ -50,6 +51,19 @@ class UpdateViewModel : ViewModel() {
         downloadManager.enqueue(request)
         
         _uiState.value = UpdateUiState.Downloading
+    }
+
+    fun dismissUpdate() {
+        _uiState.value = UpdateUiState.NoUpdate
+    }
+
+    fun downloadUpdate() {
+        val currentState = _uiState.value
+        if (currentState is UpdateUiState.UpdateAvailable) {
+            viewModelScope.launch {
+                downloadUpdate(getApplication(), currentState.updateInfo)
+            }
+        }
     }
 }
 

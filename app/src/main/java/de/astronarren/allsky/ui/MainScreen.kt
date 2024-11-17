@@ -57,7 +57,7 @@ fun MainScreen(
     
     val context = LocalContext.current
     val updateViewModel: UpdateViewModel = viewModel(
-        factory = UpdateViewModelFactory()
+        factory = UpdateViewModelFactory(context.applicationContext as android.app.Application)
     )
     val updateState by updateViewModel.uiState.collectAsState()
     
@@ -292,25 +292,15 @@ fun MainScreen(
         }
     }
 
-    when (val state = updateState) {
-        is UpdateUiState.UpdateAvailable -> {
-            UpdateDialog(
-                updateInfo = state.updateInfo,
-                onDismiss = { /* Handle dismiss */ },
-                onDownload = { updateInfo ->
-                    updateViewModel.downloadUpdate(context, updateInfo)
-                }
-            )
-        }
-        UpdateUiState.Checking -> {
-            // Optionally show a loading indicator
-        }
-        UpdateUiState.Downloading -> {
-            // Optionally show download progress
-        }
-        UpdateUiState.NoUpdate -> {
-            // Do nothing when no update is available
-        }
+    val currentUpdateState = updateState
+    if (currentUpdateState is UpdateUiState.UpdateAvailable) {
+        UpdateDialog(
+            showDialog = true,
+            onDismiss = { updateViewModel.dismissUpdate() },
+            onDownload = { updateViewModel.downloadUpdate() },
+            version = currentUpdateState.updateInfo.latestVersion,
+            changelog = currentUpdateState.updateInfo.releaseNotes
+        )
     }
 }
 
