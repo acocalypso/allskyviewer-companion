@@ -4,6 +4,14 @@ All notable changes to the Allsky Companion App will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.4] - 2024-11-18
+### Fixed
+- Update dialog "Later" button now properly closes dialog
+- Update status in settings panel now correctly shows available updates
+- Added ability to reopen update dialog by clicking status in settings
+- Improved update state handling and dialog visibility
+- Better user experience for update notifications
+
 ## [1.1.3] - 2024-11-17
 ### Added
 - Home screen widget for live Allsky image
