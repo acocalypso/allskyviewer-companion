@@ -93,6 +93,13 @@ fun SettingsPanel(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .then(
+                                if (updateState is UpdateUiState.UpdateAvailable) {
+                                    Modifier.clickable { updateViewModel.showUpdateDialog() }
+                                } else {
+                                    Modifier
+                                }
+                            )
                             .padding(16.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
@@ -103,14 +110,16 @@ fun SettingsPanel(
                                 style = MaterialTheme.typography.titleMedium
                             )
                             Text(
-                                text = when (updateState) {
+                                text = when (val state = updateState) {
                                     is UpdateUiState.UpdateAvailable -> stringResource(
                                         R.string.update_available_status, 
-                                        (updateState as UpdateUiState.UpdateAvailable).updateInfo.latestVersion
+                                        state.updateInfo.latestVersion
                                     )
                                     is UpdateUiState.Checking -> stringResource(R.string.checking_for_updates)
+                                    is UpdateUiState.Downloading -> stringResource(
+                                        R.string.downloading_update
+                                    )
                                     is UpdateUiState.NoUpdate -> stringResource(R.string.up_to_date)
-                                    is UpdateUiState.Downloading -> stringResource(R.string.up_to_date)
                                     else -> stringResource(R.string.up_to_date)
                                 },
                                 style = MaterialTheme.typography.bodyMedium,
@@ -118,7 +127,8 @@ fun SettingsPanel(
                             )
                         }
                         
-                        if (updateState is UpdateUiState.UpdateAvailable) {
+                        val currentState = updateState
+                        if (currentState is UpdateUiState.UpdateAvailable) {
                             Badge(
                                 containerColor = MaterialTheme.colorScheme.primary,
                                 contentColor = MaterialTheme.colorScheme.onPrimary

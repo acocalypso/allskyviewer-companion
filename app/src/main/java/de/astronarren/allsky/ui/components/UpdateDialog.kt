@@ -17,7 +17,7 @@ fun UpdateDialog(
 ) {
     if (showDialog) {
         AlertDialog(
-            onDismissRequest = onDismiss,
+            onDismissRequest = { onDismiss() },
             title = { Text(stringResource(R.string.update_available)) },
             text = {
                 Text(
@@ -34,7 +34,11 @@ fun UpdateDialog(
                 }
             },
             dismissButton = {
-                TextButton(onClick = onDismiss) {
+                TextButton(
+                    onClick = { 
+                        onDismiss() 
+                    }
+                ) {
                     Text(stringResource(R.string.later))
                 }
             }

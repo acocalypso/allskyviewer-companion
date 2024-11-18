@@ -60,6 +60,7 @@ fun MainScreen(
         factory = UpdateViewModelFactory(context.applicationContext as android.app.Application)
     )
     val updateState by updateViewModel.uiState.collectAsState()
+    val showUpdateDialog by updateViewModel.showDialog.collectAsState()
     
     var currentVideo by remember { mutableStateOf<String?>(null) }
     
@@ -292,14 +293,18 @@ fun MainScreen(
         }
     }
 
-    val currentUpdateState = updateState
-    if (currentUpdateState is UpdateUiState.UpdateAvailable) {
+    if (updateState is UpdateUiState.UpdateAvailable && showUpdateDialog) {
+        val state = updateState as UpdateUiState.UpdateAvailable
         UpdateDialog(
             showDialog = true,
-            onDismiss = { updateViewModel.dismissUpdate() },
-            onDownload = { updateViewModel.downloadUpdate() },
-            version = currentUpdateState.updateInfo.latestVersion,
-            changelog = currentUpdateState.updateInfo.releaseNotes
+            onDismiss = {
+                updateViewModel.dismissUpdate()
+            },
+            onDownload = {
+                updateViewModel.downloadUpdate()
+            },
+            version = state.updateInfo.latestVersion,
+            changelog = state.updateInfo.releaseNotes
         )
     }
 }
